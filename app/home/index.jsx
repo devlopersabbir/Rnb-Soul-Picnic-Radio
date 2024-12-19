@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Icon from "react-native-vector-icons/FontAwesome";
 import {
   View,
   Text,
@@ -13,22 +14,42 @@ import {
 import { SafeAreaView } from "react-native-safe-area-context";
 
 const Home = () => {
-  const [refreshing, setRefreshing] = useState(false); // State to handle refresh
+  const [refreshing, setRefreshing] = useState(false);
 
-  // Define card data with titles and URLs
+  // Define card data with titles, URLs, and icons
   const cards = [
-    { id: 1, title: "Google", url: "https://www.google.com" },
-    { id: 2, title: "YouTube", url: "https://www.youtube.com" },
-    { id: 3, title: "GitHub", url: "https://www.github.com" },
-    { id: 4, title: "React Native", url: "https://reactnative.dev" },
-    { id: 5, title: "React", url: "https://reactjs.org" },
+    {
+      id: 1,
+      title: "LISTEN LIVE",
+      url: "https://station.voscast.com/641f03d686712/",
+      icon: "headphones",
+    },
+    {
+      id: 2,
+      title: "OUR TOURING FESTIVALS",
+      url: "https://www.rnbsoulpicnic.com/",
+      icon: "youtube",
+    },
+    {
+      id: 3,
+      title: "DJ FOR RNB SOUL PICNIC RADIO (DJs, Talk shows, Bloggers, Hosts)",
+      url: "https://www.github.com",
+      icon: "github",
+    },
+    {
+      id: 4,
+      title: "ADVERTISE WITH US",
+      url: "https://reactnative.dev",
+      icon: "mobile",
+    },
+    { id: 5, title: "CONTACT US", url: "https://reactjs.org", icon: "code" },
   ];
 
   // Function to handle refresh
   const onRefresh = () => {
     setRefreshing(true);
     setTimeout(() => {
-      setRefreshing(false); // Simulate refresh completion after 2 seconds
+      setRefreshing(false);
     }, 2000);
   };
 
@@ -49,12 +70,12 @@ const Home = () => {
   return (
     <SafeAreaView style={styles.container}>
       {refreshing ? (
-        // Show ActivityIndicator while refreshing
         <View style={styles.loadingContainer}>
-          <ActivityIndicator size="large" color="#841584" />
+          <ActivityIndicator size="large" color="#38BF64" />
         </View>
       ) : (
         <ScrollView
+          contentContainerStyle={styles.scrollContainer}
           showsVerticalScrollIndicator={false}
           refreshControl={
             <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
@@ -68,14 +89,23 @@ const Home = () => {
             />
           </TouchableOpacity>
           <View style={styles.cardsContainer}>
-            {cards.map((card) => (
-              <TouchableOpacity
-                key={card.id}
-                style={styles.card}
-                onPress={() => handleCardPress(card.url)}
-              >
-                <Text style={styles.cardText}>{card.title}</Text>
-              </TouchableOpacity>
+            {cards.map((card, index) => (
+              <View key={card.id} style={styles.cardWrapper}>
+                <TouchableOpacity
+                  style={styles.card}
+                  onPress={() => handleCardPress(card.url)}
+                >
+                  <Icon
+                    name={card.icon}
+                    size={60}
+                    color="#FFFFFF"
+                    style={styles.icon}
+                  />
+                  <Text style={styles.cardText}>{card.title}</Text>
+                </TouchableOpacity>
+                {(index + 1) % 2 === 0 && <View style={styles.cardSpacer} />}{" "}
+                {/* Spacer after every pair */}
+              </View>
             ))}
           </View>
         </ScrollView>
@@ -89,42 +119,59 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#f5f5f5",
     padding: 20,
+    justifyContent: "center",
+    alignItems: "center",
   },
   loadingContainer: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
   },
-  title: {
-    fontSize: 24,
-    fontWeight: "bold",
-    marginBottom: 20,
-    textAlign: "center",
+  scrollContainer: {
+    flexGrow: 1, // Allows ScrollView to grow and center its content
+    justifyContent: "center",
+    alignItems: "center",
+    paddingBottom: "20%", // Optional padding for better spacing at the bottom
   },
   cardsContainer: {
-    flex: 1,
-    justifyContent: "space-around",
+    flexDirection: "row",
+    flexWrap: "wrap",
+    justifyContent: "space-between",
+    alignItems: "flex-start",
+    width: "100%",
+    maxWidth: "100%", // Ensures no overflow in horizontal direction
+  },
+  cardWrapper: {
+    width: "48%",
+    marginBottom: "4%",
+    display: "flex",
     alignItems: "center",
   },
   card: {
-    backgroundColor: "#841584",
-    padding: 20,
+    backgroundColor: "#38BF64",
+    paddingVertical: 20,
+    paddingHorizontal: 10,
     borderRadius: 10,
-    width: "80%",
+    width: "100%",
     alignItems: "center",
-    marginVertical: 10,
+    height: 150,
+    justifyContent: "center",
+  },
+  icon: {
+    // marginRight: 10, // Space between icon and text
   },
   cardText: {
     color: "#FFFFFF",
-    fontSize: 18,
+    fontSize: 16,
     fontWeight: "bold",
   },
   image: {
-    width: "100%",
+    width: 100,
     height: 100,
     resizeMode: "contain",
-    marginBottom: 20,
-    borderRadius: 10,
+    marginBottom: "20%", // Adjust this margin as needed
+    borderRadius: 5,
+    alignSelf: "center",
   },
 });
 

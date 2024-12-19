@@ -13,7 +13,16 @@ export default function RootLayout() {
   return (
     <Stack>
       <Stack.Screen name="index" options={{ headerShown: false }} />
-      <Stack.Screen name="Home" options={{ headerShown: false }} />
+      <Stack.Screen
+        name="home"
+        options={{
+          headerShown: true,
+          title: "RNB Soul Radio",
+          headerStyle: { backgroundColor: "#38BF64" },
+          headerTintColor: "#fff",
+          headerTitleStyle: { fontFamily: "Poppins-Bold" },
+        }}
+      />
     </Stack>
   );
 }
