@@ -28,7 +28,7 @@ const Home = () => {
       id: 2,
       title: "OUR TOURING FESTIVALS",
       url: "https://www.rnbsoulpicnic.com/",
-      icon: "youtube",
+      icon: "globe",
     },
     {
       id: 3,

@@ -1,13 +1,15 @@
 import { View, Text, Image, TouchableOpacity, StyleSheet } from "react-native";
 import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { Link } from "expo-router";
+import { useNavigation } from "@react-navigation/native";
 
 const GetStarted = () => {
-  // // Function to handle
-  // const handleCardPress = (url) => {
-  //   <Link to={url} />;
-  // };
+  const navigation = useNavigation();
+
+  const handleCardPress = () => {
+    navigation.navigate("home");
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <View>
@@ -20,7 +22,7 @@ const GetStarted = () => {
 
         <TouchableOpacity
           style={styles.button}
-          // onPress={() => handleCardPress("/home")}
+          onPress={handleCardPress} // Call the navigation function
         >
           <Text style={styles.buttonText}>LETS GO</Text>
         </TouchableOpacity>
@@ -59,16 +61,6 @@ const styles = StyleSheet.create({
     fontFamily: "Poppins",
     color: "#FFFFFF",
     textAlign: "center",
-  },
-  gradient: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  text: {
-    color: "#fff",
-    fontSize: 20,
-    fontWeight: "bold",
   },
 });
 
