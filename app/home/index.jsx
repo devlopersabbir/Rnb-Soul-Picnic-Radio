@@ -22,27 +22,32 @@ const Home = () => {
       id: 1,
       title: "LISTEN LIVE",
       url: "https://station.voscast.com/641f03d686712/",
-      icon: "headphones",
+      icon: require("../../assets/images/headphones.png"),
     },
     {
       id: 2,
       title: "OUR TOURING FESTIVALS",
       url: "https://www.rnbsoulpicnic.com/",
-      icon: "globe",
+      icon: require("../../assets/images/festival.png"),
     },
     {
       id: 3,
-      title: "DJ FOR RNB SOUL PICNIC RADIO (DJs, Talk shows, Bloggers, Hosts)",
-      url: "https://www.github.com",
-      icon: "github",
+      title: "DJ FOR RNB SOUL PICNIC RADIO (DJs, Hosts)",
+      url: "https://form.jotform.com/243536620521147",
+      icon: require("../../assets/images/dj.png"),
     },
     {
       id: 4,
       title: "ADVERTISE WITH US",
       url: "https://reactnative.dev",
-      icon: "mobile",
+      icon: require("../../assets/images/advertise.png"),
     },
-    { id: 5, title: "CONTACT US", url: "https://reactjs.org", icon: "code" },
+    {
+      id: 5,
+      title: "CONTACT US",
+      url: "https://reactjs.org",
+      icon: require("../../assets/images/contact.png"),
+    },
   ];
 
   // Function to handle refresh
@@ -60,12 +65,12 @@ const Home = () => {
     );
   };
 
-  // Function to handle image press
-  const handleImagePress = () => {
-    Linking.openURL("https://www.example.com").catch((err) =>
-      console.error("Failed to open URL:", err)
-    );
-  };
+  // // Function to handle image press
+  // const handleImagePress = () => {
+  //   Linking.openURL("https://www.example.com").catch((err) =>
+  //     console.error("Failed to open URL:", err)
+  //   );
+  // };
 
   return (
     <SafeAreaView style={styles.container}>
@@ -81,7 +86,7 @@ const Home = () => {
             <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
           }
         >
-          <TouchableOpacity onPress={handleImagePress}>
+          <TouchableOpacity>
             <Image
               source={require("../../assets/images/logo.png")}
               style={styles.image}
@@ -95,11 +100,10 @@ const Home = () => {
                   style={styles.card}
                   onPress={() => handleCardPress(card.url)}
                 >
-                  <Icon
-                    name={card.icon}
-                    size={60}
-                    color="#FFFFFF"
+                  <Image
+                    source={card.icon}
                     style={styles.icon}
+                    resizeMode="cover"
                   />
                   <Text style={styles.cardText}>{card.title}</Text>
                 </TouchableOpacity>
@@ -154,11 +158,12 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     width: "100%",
     alignItems: "center",
-    height: 150,
+    height: 160,
     justifyContent: "center",
   },
   icon: {
-    // marginRight: 10, // Space between icon and text
+    width: 80,
+    height: 80,
   },
   cardText: {
     color: "#FFFFFF",
@@ -169,7 +174,7 @@ const styles = StyleSheet.create({
     width: 100,
     height: 100,
     resizeMode: "contain",
-    marginBottom: "20%", // Adjust this margin as needed
+    marginBottom: 30, // Adjust this margin as needed
     borderRadius: 5,
     alignSelf: "center",
   },
