@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import Icon from "react-native-vector-icons/FontAwesome";
 import {
   View,
   Text,
@@ -39,13 +38,13 @@ const Home = () => {
     {
       id: 4,
       title: "ADVERTISE WITH US",
-      url: "https://reactnative.dev",
+      url: "ais@yorkpromotions.com",
       icon: require("../../assets/images/advertise.png"),
     },
     {
       id: 5,
       title: "CONTACT US",
-      url: "https://reactjs.org",
+      url: "ais@yorkpromotions.com",
       icon: require("../../assets/images/contact.png"),
     },
   ];
@@ -60,17 +59,17 @@ const Home = () => {
 
   // Function to handle card press
   const handleCardPress = (url) => {
-    Linking.openURL(url).catch((err) =>
-      console.error("Failed to open URL:", err)
-    );
+    // Check if the URL is an email address
+    if (url.includes("@")) {
+      Linking.openURL(`mailto:${url}`).catch((err) =>
+        console.error("Failed to open email client:", err)
+      );
+    } else {
+      Linking.openURL(url).catch((err) =>
+        console.error("Failed to open URL:", err)
+      );
+    }
   };
-
-  // // Function to handle image press
-  // const handleImagePress = () => {
-  //   Linking.openURL("https://www.example.com").catch((err) =>
-  //     console.error("Failed to open URL:", err)
-  //   );
-  // };
 
   return (
     <SafeAreaView style={styles.container}>
@@ -174,7 +173,7 @@ const styles = StyleSheet.create({
     width: 100,
     height: 100,
     resizeMode: "contain",
-    marginBottom: 30, // Adjust this margin as needed
+    marginBottom: 30,
     borderRadius: 5,
     alignSelf: "center",
   },
