@@ -105,7 +105,7 @@ const Home = () => {
                   />
                   <Text style={styles.cardText}>{card.title}</Text>
                 </TouchableOpacity>
-                {(index + 1) % 2 === 0 && <View style={styles.cardSpacer} />}{" "}
+                {(index + 1) % 2 === 0 && <View style={styles.cardSpacer} />}
               </View>
             ))}
           </View>
