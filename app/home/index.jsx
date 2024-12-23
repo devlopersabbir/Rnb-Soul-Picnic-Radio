@@ -15,7 +15,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 const Home = () => {
   const [refreshing, setRefreshing] = useState(false);
 
-  // Define card data with titles, URLs, and icons
+  // Card Data
   const cards = [
     {
       id: 1,
@@ -49,7 +49,7 @@ const Home = () => {
     },
   ];
 
-  // Function to handle refresh
+  // Handle refresh
   const onRefresh = () => {
     setRefreshing(true);
     setTimeout(() => {
@@ -57,9 +57,8 @@ const Home = () => {
     }, 2000);
   };
 
-  // Function to handle card press
+  // Handle card press
   const handleCardPress = (url) => {
-    // Check if the URL is an email address
     if (url.includes("@")) {
       Linking.openURL(`mailto:${url}`).catch((err) =>
         console.error("Failed to open email client:", err)
@@ -107,7 +106,6 @@ const Home = () => {
                   <Text style={styles.cardText}>{card.title}</Text>
                 </TouchableOpacity>
                 {(index + 1) % 2 === 0 && <View style={styles.cardSpacer} />}{" "}
-                {/* Spacer after every pair */}
               </View>
             ))}
           </View>
@@ -131,10 +129,10 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   scrollContainer: {
-    flexGrow: 1, // Allows ScrollView to grow and center its content
+    flexGrow: 1,
     justifyContent: "center",
     alignItems: "center",
-    paddingBottom: "20%", // Optional padding for better spacing at the bottom
+    paddingBottom: "20%",
   },
   cardsContainer: {
     flexDirection: "row",
@@ -142,7 +140,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "flex-start",
     width: "100%",
-    maxWidth: "100%", // Ensures no overflow in horizontal direction
+    maxWidth: "100%",
   },
   cardWrapper: {
     width: "48%",

@@ -20,10 +20,7 @@ const GetStarted = () => {
 
         <Text style={styles.title}>Welcome to RNB Soul Radio!</Text>
 
-        <TouchableOpacity
-          style={styles.button}
-          onPress={handleCardPress} // Call the navigation function
-        >
+        <TouchableOpacity style={styles.button} onPress={handleCardPress}>
           <Text style={styles.buttonText}>LETS GO</Text>
         </TouchableOpacity>
       </View>
